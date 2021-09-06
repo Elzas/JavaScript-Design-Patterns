@@ -12,7 +12,7 @@ let Size = Object.freeze({
 });
 
 class Product {
-    constructor(name, color, size)  {
+    constructor(name, color, size) {
         this.name = name;
         this.color = color;
         this.size = size;
@@ -20,15 +20,15 @@ class Product {
 }
 
 class ProductFilter {
-    filterByColor(products, color)  {
+    filterByColor(products, color) {
         return products.filter(p => p.color === color);
     }
 
-    filterBySize(products, size)  {
+    filterBySize(products, size) {
         return products.filter(p => p.size === size);
     }
 
-    filterBySizeAndColor(products, size, color)  {
+    filterBySizeAndColor(products, size, color) {
         return products.filter(p =>
             p.size === size && p.color === color);
     }
@@ -40,7 +40,7 @@ class ProductFilter {
 }
 
 let apple = new Product('Apple', Color.green, Size.small);
-let tree  = new Product('Tree', Color.green, Size.large);
+let tree = new Product('Tree', Color.green, Size.large);
 let house = new Product('House', Color.blue, Size.large);
 
 let products = [apple, tree, house];
@@ -55,36 +55,35 @@ let products = [apple, tree, house];
 // ↓↓↓ AFTER
 
 // general interface for a specification
-class ColorSpecification
-{
-    constructor(color)  {
+class ColorSpecification {
+    constructor(color) {
         this.color = color;
     }
 
-    isSatisfied(item)  {
+    isSatisfied(item) {
         return item.color === this.color;
     }
 }
 
 class SizeSpecification {
-    constructor(size)  {
+    constructor(size) {
         this.size = size;
     }
 
-    isSatisfied(item)  {
+    isSatisfied(item) {
         return item.size === this.size;
     }
 }
 
 class BetterFilter {
-    filter(items, spec)  {
+    filter(items, spec) {
         return items.filter(x => spec.isSatisfied(x));
     }
 }
 
 // specification combinator
-class AndSpecification  {
-    constructor(...specs)  {
+class AndSpecification {
+    constructor(...specs) {
         this.specs = specs;
     }
 
@@ -96,13 +95,13 @@ class AndSpecification  {
 let bf = new BetterFilter();
 console.log(`Green products (new):`);
 for (let p of bf.filter(products,
-    new ColorSpecification(Color.green)))  {
+    new ColorSpecification(Color.green))) {
     console.log(` * ${p.name} is green`);
 }
 
 console.log(`Large products:`);
 for (let p of bf.filter(products,
-    new SizeSpecification(Size.large)))  {
+    new SizeSpecification(Size.large))) {
     console.log(` * ${p.name} is large`);
 }
 
