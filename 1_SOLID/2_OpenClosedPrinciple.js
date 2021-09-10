@@ -50,7 +50,7 @@ let products = [apple, tree, house];
 // for (let p of pf.filterByColor(products, Color.green))
 //   console.log(` * ${p.name} is green`);
 
-// ↑↑↑ BEFORE
+// BEFORE
 
 // ↓↓↓ AFTER
 
